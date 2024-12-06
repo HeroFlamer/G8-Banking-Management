@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package bankingsystem;
+import javax.swing.JOptionPane; 
 
 public class Login extends javax.swing.JFrame {
 
@@ -58,8 +59,19 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
         jButton7.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         jButton7.setText("LOGIN");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton8.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
         jButton8.setText("New Here? Create Your Account Now ");
@@ -163,24 +175,50 @@ public class Login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        signup SignUp = new signup(); 
+        SignUp.setVisible(true); // make admindashboard visible
+        this.dispose(); //close the login page
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
         // TODO add your handling code here:
+            handleLoginButton(evt);
     }//GEN-LAST:event_jPasswordField1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+            handleLoginButton(evt);
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+            handleLoginButton(evt);
+    }//GEN-LAST:event_jButton7ActionPerformed
+    private void handleLoginButton(java.awt.event.ActionEvent evt) {
+    // Get username and password from the text fields
+       String username = jTextField1.getText();
+       String password = new String(jPasswordField3.getPassword());
+
+    // Check if the credentials match the admin credentials
+       if (username.equals("Admin") && password.equals("System32")) {
+           // Show success message
+           JOptionPane.showMessageDialog(this, "Login successful!");
+           // Add your logic to transition to the next screen
+           AdminSystem adminSystem = new AdminSystem(); 
+           adminSystem.setVisible(true); // make admindashboard visible
+           this.dispose(); //close the login page
+        } else {
+           // Show error message if the login credentials are incorrect
+        JOptionPane.showMessageDialog(this, "Invalid username or password!");
+        }
+    }
+    
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+        // Set the Nimbus look and feel (default theme)
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -188,25 +226,19 @@ public class Login extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
 
-        /* Create and display the form */
+        // Create and display the form
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Login().setVisible(true);
             }
         });
     }
-
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Choice choice1;
     private javax.swing.Box.Filler filler1;
